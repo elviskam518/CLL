@@ -13,7 +13,8 @@
             <li><a href="/" class="nav-link">Home</a></li>
             <li><a href="/gallery" class="nav-link" >Gallery</a></li>
             <li><a href="/search" class="nav-link" >Search</a></li>
-            <li><a href="/comment" class="nav-link" >Comment</a></li>
+            <li><a href="/comment" class="nav-link" >Feedback</a></li>
+            <li><a href="/meet" class="nav-link" >Meet Some new friends</a></li>
         </ul>
     </nav>
     
@@ -23,24 +24,32 @@
         <div class="content">
             <h3>Title: <%= image.title %></h3>
             <h3>Category: <%= image.category %></h3>
-            <% if(image.comment) { %>
-                <p>Comment: <%= image.comment %></p>
-            <% } %>
         </div>
     </div>
 
    <form>
     <button onclick="getRandomImage()">Get Another Random Image</button>
-</form>
+   </form>
 
     <script src="webserver.js"></script>
     <script src="clientside.js"></script>
 </body>
 <footer>
-    <div class="container">
-        <p>&copy; 2024 Share_Your_Life. All rights reserved.</p>
-        <p>https://www.youtube.com/watch?v=wIOpe8S2Mk8&t=137s</p> 
-        <p>https://www.youtube.com/watch?v=lmCq2ZtoKQs</p>
+    <div class="container">  
+     <div style="display: flex;">
+        <div style="flex: 1;">
+            <h3>Reference:</h3>
+          <p>https://www.youtube.com/watch?v=wIOpe8S2Mk8&t=137s</p> 
+           <p>https://www.youtube.com/watch?v=lmCq2ZtoKQs</p>
+        </div>
+        <div style="flex: 1;">
+           <p>&copy; 2024 Share_Your_Life. All rights reserved.</p>
+           <div class="color-picker">
+            <input type="color" id="colorPicker">
+            <button onclick="changeBackgroundColor()">Change Background Color</button>
+        </div>
+        </div>
+     </div>
     </div>
 </footer>
 </html>

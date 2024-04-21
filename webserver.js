@@ -63,23 +63,28 @@ app.get('/search', (req, res) => {
     }
   })
 })
-
-app.get('/search', (req, res) => {
-  const searchQuery = req.query.q
+app.get('/meet', (req, res) => {
+  const searchQuery = req.query.n
 
   fs.readFile('data.json', 'utf8', (err, data) => {
     if (err) {
       console.log('Error reading file:', err)
-      res.render('gallery', { image: null })
+      res.render('meet', { image: null })
       return
     }
     try {
       const images = JSON.parse(data)
-      const foundImage = images.find((image) => image.title === searchQuery)
-      res.render('gallery', { image: foundImage })
+      const Sameimage = images.filter((image) => image.category === searchQuery)
+      if (Sameimage.length === 0) {
+        res.render('meet', { image: null })
+        return
+      }
+      const randomIndex = Math.floor(Math.random() * Sameimage.length)
+      const randomImage = Sameimage[randomIndex]
+      res.render('meet', { image: randomImage })
     } catch (parseError) {
       console.log('Error parsing JSON:', parseError)
-      res.render('gallery', { image: null })
+      res.render('meet', { image: null })
     }
   })
 })
@@ -100,17 +105,23 @@ app.get('/comment', (req, res) => {
   res.render('comment')
 })
 
+app.get('/meet', (req, res) => {
+  res.render('meet')
+})
+
 app.post('/', upload.single('filename'), (req, res) => {
   const category = req.body.category
   const imageUrl = req.file.filename
   const title = req.body.title
-  const comment = null
+  const name = req.body.name
+  const phonenumber = req.body.phonenumber
 
   const imagemetaData = {
     title,
     category,
     imageUrl,
-    comment
+    name,
+    phonenumber
   }
   fs.readFile('data.json', 'utf8', (err, data) => {
     let images = []

@@ -110,3 +110,12 @@ footer {
   text-align: center;
   padding: 10px 0;
 }
+
+.introduction p {
+  font-size: 17px;
+  margin: 3%;
+}
+.color-picker {
+  padding-right: -1000%;
+  margin-top: 0.6%;
+}

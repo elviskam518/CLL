@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Gallery</title>
+    <title>Document</title>
 </head>
 <body>
     <nav class="navbar">
@@ -14,34 +14,40 @@
             <li><a href="/gallery" class="nav-link" >Gallery</a></li>
              <li><a href="/search" class="nav-link" >Search</a></li>
              <li><a href="/comment" class="nav-link" >Feedback</a></li>
-            <li><a href="/meet" class="nav-link" >Meet Some new friends</a></li>
+             <li><a href="/meet" class="nav-link" >Meet Some new friends</a></li>
         </ul>
     </nav>
     
-    <h1>Gallery</h1>
-    <form action="/search" method="GET">
-        <input type="text" name="q" placeholder="Search...">
+    <h1>Meet Some new Friends </h1>
+    <form action="/meet" method="GET">
+        <select type="text" name="n" id="category" required><br><br>>
+            <option value="Travel & Adventure">Travel & Adventure</option>
+            <option value="Hobbies & Interests">Hobbies & Interests</option>
+            <option value="Pets & Animals">Pets & Animals</option>
+            <option value="Art & Creativity">Art & Creativity</option>
+            <option value="Events & Celebrations">Events & Celebrations</option>
+            <option value="Food & Dining">Food & Dining</option> 
+            <option value="Health & Fitness">Health & Fitness</option> 
+        </select>
         <button type="submit" ><i class="fa fa-search"></i></button>
     </form>
     <h1>Search Results</h1>
     <% if (image) { %>
-        <div class = "parallel-container">
-        <div>
-            <img src="/Image/<%= image.imageUrl %>" class="image" alt="<%= image.title %>">
-        </div><div class="content">
-            <h2>Title: <%= image.title %></h2>
-            <h3>Category: <%= image.category %></h3>
-            <% if(image.comment) { %>
-                <p>Comment: <%= image.comment %></p>
-            <% } %></div>
+        <div class="parallel-container">
+            <div>
+                <img src="/Image/<%= image.imageUrl %>" class="image" alt="<%= image.title %>">
+            </div>
+            <div class="content">
+                <h2>Title: <%= image.title %></h2>
+                <h3>Category: <%= image.category %></h3>
+                <h3>Name: <%= image.name %></h3>
+                <h3>Phone number: <%= image.phonenumber %></h3>
+            </div>
         </div>
     <% } else { %>
-        <% if (notFound) { %>
-            <p>No image found with the specified title.</p>
-        <% } else { %>
-            <p>Error occurred while searching for the image.</p>
-        <% } %>
+        <p>No image found with the specified title.</p>
     <% } %>
+    
     <script src="webserver.js"></script>
     <script src="clientside.js"></script>
 </body>
